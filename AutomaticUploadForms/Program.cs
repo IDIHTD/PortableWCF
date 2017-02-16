@@ -12,9 +12,7 @@ namespace AutomaticUploadForms
         /// </summary>
         [STAThread]
         static void Main()
-        {
-            MemexUpdateCommon.MemexSingleInstance temp = new MemexUpdateCommon.MemexSingleInstance("ghjk");
-            temp.GetServerFiles();
+        {           
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new UploadForm());
