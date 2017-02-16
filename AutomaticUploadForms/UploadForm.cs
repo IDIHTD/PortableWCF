@@ -200,11 +200,4 @@ namespace AutomaticUploadForms
                 textBox2.Text = folderBrowserDialog2.SelectedPath;
         }
     }
-
-    [Serializable]
-    public class BandProjectInfo
-    {
-        public string ProjectName { get; set; }
-        public string ProjectPath { get; set; }
-    }
 }
