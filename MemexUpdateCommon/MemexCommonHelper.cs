@@ -6,7 +6,7 @@ using System.ServiceModel;
 
 namespace MemexUpdateCommon
 {
-   public class MemexSingleInstance
+   public class MemexCommonHelper
     {
         private static string _projectName;
         private static IAutomaticUpdateServer channel;
@@ -15,7 +15,7 @@ namespace MemexUpdateCommon
         /// 构造函数
         /// </summary>
         /// <param name="projectName"></param>
-        public MemexSingleInstance (string projectName)
+        public MemexCommonHelper (string projectName)
         {
             _projectName = projectName;
             EndpointAddress address = new EndpointAddress("http://localhost:60124/AutomaticUpdateImplement.svc/IAutomaticUpdateServer");

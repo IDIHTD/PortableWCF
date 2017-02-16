@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonAction.cs" />
-    <Compile Include="MemexSingleInstance.cs" />
+    <Compile Include="MemexCommonHelper.cs" />
     <Compile Include="MemexUpateHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\ServiceReference1\Reference.cs">
