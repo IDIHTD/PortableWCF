@@ -42,6 +42,7 @@ namespace AutomaticUpdatesWCF
                     var appEntity= FileProcessingHelper.GetTFromXML<ApplicationEntity>(getTxtString);
                     if(appEntity!=null)
                     {
+                        AppList = new List<ApplicationEntity>();
                         AppList.Add(appEntity);
                         return appEntity.AppVersion;
                     }
