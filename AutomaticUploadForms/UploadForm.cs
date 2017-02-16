@@ -155,8 +155,8 @@ namespace AutomaticUploadForms
                         dirs.ForEach(o =>
                         {
                             //删除服务端不存在的文件夹
-                            if (o.DiffentValue == DifDescription.DirNotExistInServer)
-                                MemexUpateHelper.DeleteDir(o.ClientFullPath);
+                            //if (o.DiffentValue == DifDescription.DirNotExistInServer)
+                            //    MemexUpateHelper.DeleteDir(o.ClientFullPath);
                             if (o.DiffentValue == DifDescription.DirNotExistInClient)
                             {
                                 o.FullName = o.FullName.Substring(2);
@@ -171,8 +171,8 @@ namespace AutomaticUploadForms
                     needDownFiles.ForEach(o =>
                     {
                         //删除服务端不存在的文件
-                        if (o.DiffentValue == DifDescription.FileNotExistInServer)
-                            MemexUpateHelper.DeleteFiles(o.ClientFullPath);
+                        //if (o.DiffentValue == DifDescription.FileNotExistInServer)
+                        //    MemexUpateHelper.DeleteFiles(o.ClientFullPath);
                         if (o.DiffentValue == DifDescription.FileNotExistInClient)
                         {
                             //如果父目录不存在则创建
