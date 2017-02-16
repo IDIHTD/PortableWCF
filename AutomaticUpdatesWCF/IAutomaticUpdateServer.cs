@@ -55,6 +55,13 @@ namespace AutomaticUpdatesWCF
         [OperationContract]
         List<DifferentFile> GetDifferentList();
 
+        /// <summary>
+        /// 文件上传后更新序列化后的XML数据
+        /// </summary>
+        /// <param name="appName"></param>
+        [OperationContract]
+        bool UpdateAppInfo(string appName);
+
         // TODO: 在此添加您的服务操作
     }
 }

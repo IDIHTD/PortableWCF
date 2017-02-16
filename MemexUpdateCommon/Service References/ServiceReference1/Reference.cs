@@ -643,6 +643,9 @@ namespace MemexUpdateCommon.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAutomaticUpdateServer/GetDifferentList", ReplyAction="http://tempuri.org/IAutomaticUpdateServer/GetDifferentListResponse")]
         System.Collections.Generic.List<MemexUpdateCommon.ServiceReference1.DifferentFile> GetDifferentList();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAutomaticUpdateServer/UpdateAppInfo", ReplyAction="http://tempuri.org/IAutomaticUpdateServer/UpdateAppInfoResponse")]
+        bool UpdateAppInfo(string appName);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -830,6 +833,10 @@ namespace MemexUpdateCommon.ServiceReference1 {
         
         public System.Collections.Generic.List<MemexUpdateCommon.ServiceReference1.DifferentFile> GetDifferentList() {
             return base.Channel.GetDifferentList();
+        }
+        
+        public bool UpdateAppInfo(string appName) {
+            return base.Channel.UpdateAppInfo(appName);
         }
     }
 }

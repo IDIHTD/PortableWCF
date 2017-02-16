@@ -165,5 +165,34 @@ namespace MemexUpdateCommon
         {
             CommonAction.DeleteFiles(path);
         }
+
+        /// <summary>
+        /// 是否需要更新
+        /// </summary>
+        /// <param name="projectName"></param>
+        /// <param name="version"></param>
+        /// <returns></returns>
+        public static bool IsNeedToUpdate(string projectName,string version)
+        {
+           var appList= channel.GetAppList();
+            if (appList != null && appList.Any())
+            {
+                var firstOrDefault = appList.FirstOrDefault(o => o.AppName == projectName && o.AppVersion != version);
+                if (firstOrDefault != null)
+                    return true;
+                return false;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 更新项目文件信息到XML中
+        /// </summary>
+        /// <param name="appName"></param>
+        /// <returns></returns>
+        public static bool UpdateAppInfo(string appName)
+        {
+            return channel.UpdateAppInfo(appName);
+        }
     }
 }

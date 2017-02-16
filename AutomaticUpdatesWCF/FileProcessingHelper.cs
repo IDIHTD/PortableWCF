@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
+using System.Xml.Serialization;
 
 namespace AutomaticUpdatesWCF
 {
@@ -15,6 +17,11 @@ namespace AutomaticUpdatesWCF
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
             return path;
+        }
+
+        public static string AppInfoXMLPath()
+        {
+          return  AppDomain.CurrentDomain.BaseDirectory + "\\AppInfo\\";
         }
 
         /// <summary>
@@ -113,6 +120,61 @@ namespace AutomaticUpdatesWCF
             }
         }
 
-    }
+        /// <summary>
+        /// 将一个对象序列化为XML
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="t"></param>
+        /// <param name="txtName"></param>
+        public static void XMLSerializer<T>(T t,string path)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(T));
+            using (StreamWriter sw = File.CreateText(path))
+            {
+                serializer.Serialize(sw, t);
+            }
+        }
 
+        /// <summary>
+        /// 将一个字符串反序列化为指定类型
+        /// </summary>
+        /// <typeparam name="T">类型</typeparam>
+        /// <param name="xml">字符串</param>
+        /// <returns></returns>
+        public static T XMLDeserialize<T>(string xml)
+        {
+            T t = default(T);
+            using (StringReader sdr = new StringReader(xml))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(T));
+                 t = (T)serializer.Deserialize(sdr);
+            }
+            return t;
+        }
+
+        public static T GetTFromXML<T>(string path)
+        {      
+            if (!string.IsNullOrEmpty(path))
+            {
+               return XMLDeserialize<T>(path);
+            }
+            return default(T);
+        }
+
+        public static List<string> GetFilesFullNameList(string fileFormat)
+        {
+            if (string.IsNullOrEmpty(fileFormat))
+                return null;
+            var pdfFilesPath = AppInfoXMLPath();
+            DirectoryInfo folder = new DirectoryInfo(pdfFilesPath);
+            var temp = folder.GetFiles(fileFormat);
+            var fileDataList = new List<string>();
+            if (temp != null && temp.Any())
+                temp.ToList().ForEach(c =>
+                {
+                    fileDataList.Add(c.FullName);
+                });
+            return fileDataList;
+        }
+    }
 }

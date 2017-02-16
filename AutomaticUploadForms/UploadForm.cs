@@ -44,6 +44,8 @@ namespace AutomaticUploadForms
             var appParams = new ApplicationInfo { AppName = textBox3.Text, AppVersion= txtBoxProjectVersion.Text, AppPath=txtBoxLoadPath.Text};
             MemexUpateHelper.SetApplicationInfo(appParams);
             GetFileList();
+            //更新项目文件信息到XML中
+            MemexUpateHelper.UpdateAppInfo(textBox3.Text);
             MessageBox.Show("上传完成！");
         }
 

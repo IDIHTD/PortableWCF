@@ -18,18 +18,36 @@ namespace AutomaticUpdatesWCF
     public class AutomaticUpdateImplement : IAutomaticUpdateServer
     {
         private static string path;
+        private static string appInfoXMLPath;
 
         public AutomaticUpdateImplement()
         {
             path = FileProcessingHelper.GetUpLoadFilePath();
+            appInfoXMLPath = FileProcessingHelper.AppInfoXMLPath();
         }
 
-       
-
+        /// <summary>
+        /// 获取应用程序名称
+        /// </summary>
+        /// <param name="applicationName"></param>
+        /// <returns></returns>
         public string GetVersionByApplicationName(string applicationName)
         {
             if (AppList == null || !AppList.Any())
+            {
+                var appXMLPath = appInfoXMLPath + applicationName + ".txt";
+                if (File.Exists(appXMLPath))
+                {
+                    var getTxtString = File.ReadAllText(appXMLPath, Encoding.Default);
+                    var appEntity= FileProcessingHelper.GetTFromXML<ApplicationEntity>(getTxtString);
+                    if(appEntity!=null)
+                    {
+                        AppList.Add(appEntity);
+                        return appEntity.AppVersion;
+                    }
+                }
                 return string.Empty;
+            }
             if (AppList.Exists(o => o.AppName == applicationName) && !string.IsNullOrEmpty(AppList.FirstOrDefault(o => o.AppName == applicationName).AppVersion))
                 return AppList.FirstOrDefault(o => o.AppName == applicationName).AppVersion;
             return string.Empty;
@@ -46,14 +64,34 @@ namespace AutomaticUpdatesWCF
             {
                 return AppList.FirstOrDefault(o => o.AppName == applicationName);
             }
+            else if(File.Exists(appInfoXMLPath + applicationName + ".txt"))
+            {              
+                    var getTxtString = File.ReadAllText(appInfoXMLPath + applicationName + ".txt", Encoding.Default);
+                    var appEntity = FileProcessingHelper.GetTFromXML<ApplicationEntity>(getTxtString);
+                    if (appEntity != null)
+                    {
+                        AppList.Add(appEntity);
+                        return appEntity;
+                    }
+                return new ApplicationEntity();
+            }
             else
                 return new ApplicationEntity();
         }
+
+        /// <summary>
+        /// 应用程序列表
+        /// </summary>
         public static List<ApplicationEntity> AppList
         {
             get; set;
         }
 
+        /// <summary>
+        /// 设置应用程序名称
+        /// </summary>
+        /// <param name="appInfo"></param>
+        /// <returns></returns>
         public bool SetApplicationInfo(ApplicationInfo appInfo)
         {
             var currentAppEntity = FileProcessingHelper.GetFiles(appInfo.AppPath);
@@ -68,6 +106,7 @@ namespace AutomaticUpdatesWCF
             }
             return false;
         }
+
         /// <summary>
         /// 下载文件
         /// </summary>
@@ -155,6 +194,22 @@ namespace AutomaticUpdatesWCF
             {
                 return appList;
             }
+            appList = new List<ApplicationEntity>();
+            AppList = new List<ApplicationEntity>();
+            var fileList = FileProcessingHelper.GetFilesFullNameList("*.txt");
+            if (fileList!=null&& fileList.Any())
+            {
+                fileList.ForEach(o=> {
+                    var getTxtString = File.ReadAllText(o, Encoding.Default);
+                    var appEntity = FileProcessingHelper.GetTFromXML<ApplicationEntity>(getTxtString);
+                    if (appEntity != null)
+                    {
+                        AppList.Add(appEntity);
+                    }
+                });
+                appList = AppList;
+                return appList;
+            }
             return new List<ApplicationEntity>();
         }
 
@@ -172,5 +227,29 @@ namespace AutomaticUpdatesWCF
         {
             return new List<DifferentFile>();
         }
+
+        /// <summary>
+        /// 更新应用程序信息到XML中
+        /// </summary>
+        /// <param name="appName"></param>
+       public bool UpdateAppInfo(string appName)
+       {
+            var isTrue = false;
+            var firstOrDefault = AppList.FirstOrDefault(o => o.AppName == appName);
+            if(firstOrDefault!=null)
+            {
+                try
+                {
+                    FileProcessingHelper.XMLSerializer(firstOrDefault, AppDomain.CurrentDomain.BaseDirectory + "\\AppInfo\\" + appName + ".txt");
+                    isTrue = true;
+                }
+                catch(Exception ex)
+                {
+                  
+                }
+               
+            }
+            return isTrue;
+       }
     }
 }

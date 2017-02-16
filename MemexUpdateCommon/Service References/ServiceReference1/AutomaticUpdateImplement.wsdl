@@ -80,6 +80,12 @@
   <wsdl:message name="IAutomaticUpdateServer_GetDifferentList_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetDifferentListResponse" />
   </wsdl:message>
+  <wsdl:message name="IAutomaticUpdateServer_UpdateAppInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAppInfo" />
+  </wsdl:message>
+  <wsdl:message name="IAutomaticUpdateServer_UpdateAppInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateAppInfoResponse" />
+  </wsdl:message>
   <wsdl:portType name="IAutomaticUpdateServer">
     <wsdl:operation name="GetVersionByApplicationName">
       <wsdl:input wsaw:Action="http://tempuri.org/IAutomaticUpdateServer/GetVersionByApplicationName" message="tns:IAutomaticUpdateServer_GetVersionByApplicationName_InputMessage" />
@@ -116,6 +122,10 @@
     <wsdl:operation name="GetDifferentList">
       <wsdl:input wsaw:Action="http://tempuri.org/IAutomaticUpdateServer/GetDifferentList" message="tns:IAutomaticUpdateServer_GetDifferentList_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAutomaticUpdateServer/GetDifferentListResponse" message="tns:IAutomaticUpdateServer_GetDifferentList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAutomaticUpdateServer/UpdateAppInfo" message="tns:IAutomaticUpdateServer_UpdateAppInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAutomaticUpdateServer/UpdateAppInfoResponse" message="tns:IAutomaticUpdateServer_UpdateAppInfo_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IAutomaticUpdateServer" type="tns:IAutomaticUpdateServer">
@@ -204,6 +214,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetDifferentList">
       <soap:operation soapAction="http://tempuri.org/IAutomaticUpdateServer/GetDifferentList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAppInfo">
+      <soap:operation soapAction="http://tempuri.org/IAutomaticUpdateServer/UpdateAppInfo" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
