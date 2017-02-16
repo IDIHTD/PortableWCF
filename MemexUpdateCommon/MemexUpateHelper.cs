@@ -7,14 +7,11 @@ using System.ServiceModel;
 namespace MemexUpdateCommon
 {
    public class MemexUpateHelper
-    {
-        // private static AutomaticUpdateServerClient serverClient;
-
+    {       
         private static IAutomaticUpdateServer channel;
 
         static MemexUpateHelper()
         {
-            //serverClient=new AutomaticUpdateServerClient();
             EndpointAddress address = new EndpointAddress("http://localhost:60124/AutomaticUpdateImplement.svc/IAutomaticUpdateServer");
             BasicHttpBinding binding = new BasicHttpBinding();
             binding.MaxBufferPoolSize = 2147483647;
@@ -83,11 +80,6 @@ namespace MemexUpdateCommon
         /// <param name="size">大小</param>
         /// <param name="sm">文件流</param>
         /// <returns></returns>
-        //public static bool DownLoadFile(string fileName,string projectName,out string msg,out long size,out Stream sm)
-        //{          
-        //   return channel.DownLoadFile(fileName, projectName, out msg, out size, out sm);
-        //}
-
         public static DlFileResult DownLoadFile(string fileName, string projectName, out string msg, out long size, out Stream sm)
         {
             DlFile dfile = new DlFile();
@@ -108,16 +100,9 @@ namespace MemexUpdateCommon
         /// <param name="length">长度</param>
         /// <param name="sm">文件流</param>
         /// <param name="message">消息</param>
-        /// <returns></returns>
-        //public static bool UpLoadFile(string fileName,string projectName,long length,Stream sm,out string message)
-        //{
-        //     return channel.UpLoadFile(fileName,projectName, sm.Length, sm, out message);
-
-        //}
-
+        /// <returns></returns>     
         public static UpFileResult UpLoadFile(string fileName, string projectName, long length, Stream sm, out string message)
         {
-            // return channel.UpLoadFile(fileName,projectName, sm.Length, sm, out message);
             UpFile upFile = new UpFile { FileName = fileName, ProjectName = projectName, Size = length, FileStream = sm };
             message = string.Empty;
             return channel.UpLoadFile(upFile);
