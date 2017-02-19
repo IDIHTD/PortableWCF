@@ -57,6 +57,14 @@ namespace AutomaticUpdatesWCF
         [OperationContract]
         bool UpdateAppInfo(string appName);
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="appName"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool DeleteAppInfo(string appName);
+
         // TODO: 在此添加您的服务操作
     }
 }

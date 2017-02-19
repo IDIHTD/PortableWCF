@@ -758,6 +758,9 @@ namespace MemexUpdateCommon.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAutomaticUpdateServer/UpdateAppInfo", ReplyAction="http://tempuri.org/IAutomaticUpdateServer/UpdateAppInfoResponse")]
         bool UpdateAppInfo(string appName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAutomaticUpdateServer/DeleteAppInfo", ReplyAction="http://tempuri.org/IAutomaticUpdateServer/DeleteAppInfoResponse")]
+        bool DeleteAppInfo(string appName);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -949,6 +952,10 @@ namespace MemexUpdateCommon.ServiceReference1 {
         
         public bool UpdateAppInfo(string appName) {
             return base.Channel.UpdateAppInfo(appName);
+        }
+        
+        public bool DeleteAppInfo(string appName) {
+            return base.Channel.DeleteAppInfo(appName);
         }
     }
 }

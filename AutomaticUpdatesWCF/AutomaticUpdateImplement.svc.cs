@@ -248,5 +248,12 @@ namespace AutomaticUpdatesWCF
             }
             return isTrue;
        }
+
+        public bool DeleteAppInfo(string appName)
+        {
+            if(AppList!=null&&AppList.Any()&&AppList.Any(o=>o.AppName==appName))
+               return AppList.RemoveAll(o=>o.AppName==appName)>0;
+            return false;
+        }
     }
 }

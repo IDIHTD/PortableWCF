@@ -176,5 +176,15 @@ namespace MemexUpdateCommon
         {
             return channel.UpdateAppInfo(appName);
         }
+
+        /// <summary>
+        /// 删除指定名称的App信息
+        /// </summary>
+        /// <param name="appName"></param>
+        /// <returns></returns>
+        public static bool DeleteAppInfo(string appName)
+        {
+            return channel.DeleteAppInfo(appName);
+        }
     }
 }

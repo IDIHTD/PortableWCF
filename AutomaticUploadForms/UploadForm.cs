@@ -38,6 +38,7 @@ namespace AutomaticUploadForms
             var uploadFiles = MemexUpateHelper.GetFiles(txtBoxLoadPath.Text);
             if (uploadFiles != null && uploadFiles.MDir != null)
             {
+                MemexUpateHelper.DeleteAppInfo(textBox3.Text);
                 MemexUpateHelper.DeleteFile(textBox3.Text);
                     StartUploadFile(uploadFiles.MDir);
             }
