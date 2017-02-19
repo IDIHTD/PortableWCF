@@ -56,17 +56,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Service References\ServiceReference1\AutomaticUpdateImplement.wsdl" />
-    <None Include="Service References\ServiceReference1\AutomaticUpdateImplement.xsd">
+    <None Include="Service References\ServiceReference1\AutomaticUpdateImplement1.wsdl" />
+    <None Include="Service References\ServiceReference1\AutomaticUpdateImplement4.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\AutomaticUpdateImplement1.xsd">
+    <None Include="Service References\ServiceReference1\AutomaticUpdateImplement41.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\AutomaticUpdateImplement2.xsd">
+    <None Include="Service References\ServiceReference1\AutomaticUpdateImplement42.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\AutomaticUpdateImplement3.xsd">
+    <None Include="Service References\ServiceReference1\AutomaticUpdateImplement43.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceReference1\MemexUpdateCommon.ServiceReference1.ApplicationEntity.datasource">
@@ -80,9 +80,6 @@
     <WCFMetadataStorage Include="Service References\ServiceReference1\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceReference1\AutomaticUpdateImplement.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +90,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceReference1\AutomaticUpdateImplement1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

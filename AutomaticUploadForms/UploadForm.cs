@@ -58,12 +58,12 @@ namespace AutomaticUploadForms
                 {
                     var isTrue = false;
                     if (!string.IsNullOrEmpty(o.ParentName))
-                        isTrue = MemexUpateHelper.DirIsExistOrCreate(o.ParentName, textBox3.Text);
+                        isTrue = MemexUpateHelper.DirIsExistOrCreate(o.ParentName.Substring(o.AbsoulateRootPath.Length), textBox3.Text);
                     if (isTrue)
                     {
                         Stream sm = new FileStream(o.FullName, FileMode.Open, FileAccess.Read);
                         string message = "";
-                        MemexUpateHelper.UpLoadFile(o.FullName, textBox3.Text + "\\", sm.Length, sm, out message);
+                        MemexUpateHelper.UpLoadFile(o.RelativePath, textBox3.Text + "\\", sm.Length, sm, out message);
                     }
                 });
             if (mdirs != null && mdirs.Dirs != null && mdirs.Dirs.Any())
@@ -117,7 +117,7 @@ namespace AutomaticUploadForms
         private  void DownFile(DifferentFile file)
         {
             Stream sm = new MemoryStream();
-            var name = file.FullName.Substring(3);
+            var name = file.FullName.Substring(file.AbsoulteRootPath.Length-1);
             var msg = string.Empty;
             var size = 0l;
             var issuccess = MemexUpateHelper.DownLoadFile(name, textBox1.Text, out msg, out size, out sm);
@@ -127,7 +127,7 @@ namespace AutomaticUploadForms
                 if (Directory.Exists(path))
                     Directory.CreateDirectory(path);
                 byte[] buffer = new byte[size];
-                FileStream fs = new FileStream(file.ClientFullPath+"\\" + file.FilName, FileMode.Create, FileAccess.Write);
+                FileStream fs = new FileStream(file.ClientFullPath, FileMode.Create, FileAccess.Write);
                 int count = 0;
                 while ((count = sm.Read(buffer, 0, buffer.Length)) > 0)
                 {
@@ -173,11 +173,11 @@ namespace AutomaticUploadForms
                         //删除服务端不存在的文件
                         //if (o.DiffentValue == DifDescription.FileNotExistInServer)
                         //    MemexUpateHelper.DeleteFiles(o.ClientFullPath);
-                        if (o.DiffentValue == DifDescription.FileNotExistInClient)
+                        if (o.DiffentValue == DifDescription.FileNotExistInClient||o.DiffentValue== DifDescription.FileSizeInconsistency||o.DiffentValue== DifDescription.FileVersionInconsistency)
                         {
                             //如果父目录不存在则创建
-                            if (!Directory.Exists(o.ClientFullPath))
-                                Directory.CreateDirectory(o.ClientFullPath);
+                            if (!string.IsNullOrEmpty(o.ClientFullPath)&&!Directory.Exists(o.ClientFullPath.Substring(0,o.ClientFullPath.LastIndexOf("\\"))))
+                                Directory.CreateDirectory(o.ClientFullPath.Substring(0,o.ClientFullPath.LastIndexOf("\\")));
                             //下载文件
                             DownFile(o);
                         }

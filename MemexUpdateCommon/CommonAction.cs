@@ -151,7 +151,7 @@ namespace MemexUpdateCommon
         /// </summary>
         /// <param name="targetDir"></param>
         /// <param name="currentObject"></param>
-        private static void GetFilesTree(string targetDir, MDirs currentObject)
+        private static void GetFilesTree(string targetDir, MDirs currentObject,string absolutePath)
         {
             if (currentObject == null)
                 currentObject = new MDirs();
@@ -176,7 +176,9 @@ namespace MemexUpdateCommon
                     FullName = fileName,
                     ExtendName = fileName.Substring(fileName.LastIndexOf(".") + 1),
                     Size = fileInfo.Length.ToString(),
-                    Version = version
+                    Version = version,
+                    AbsoulateRootPath = absolutePath,
+                    RelativePath = fileName.Substring(absolutePath.Length-1)
                 });
             }
             foreach (string directory in Directory.GetDirectories(targetDir))
@@ -185,10 +187,12 @@ namespace MemexUpdateCommon
                 {
                     Name = directory.Substring(directory.LastIndexOf("\\") + 1),
                     ParentName = targetDir,
-                    FullName = directory
+                    FullName = directory,
+                    AbsoulateRootPath=absolutePath,
+                    RelativePath=directory.Substring(absolutePath.Length-1)
                 };
                 currentObject.Dirs.Add(currentEntity);
-                GetFilesTree(directory, currentEntity);
+                GetFilesTree(directory, currentEntity, absolutePath);
             }
         }
 
@@ -212,17 +216,17 @@ namespace MemexUpdateCommon
                 serverFiles.ForEach(o => {
                     if (o.IsForceUpdate)
                     {
-                        differentList.Add(new DifferentFile { DiffentValue = DifDescription.ForceUpdate, ParentName = server.FullName, FilName = o.Name, FullName = o.FullName, Type = FileType.File, ServiceFullPath = o.FullName, ClientFullPath = client.FullName });
+                        differentList.Add(new DifferentFile { DiffentValue = DifDescription.ForceUpdate, ParentName = server.FullName, FilName = o.Name, FullName = o.FullName, Type = FileType.File, ServiceFullPath = o.FullName, ClientFullPath = client.FullName,AbsoulteRootPath=o.AbsoulateRootPath });
                     }
                     else
                     {
                         var firstOrDefault = clientFiles.FirstOrDefault(c => c.Name == o.Name);
                         if (firstOrDefault == null)
-                            differentList.Add(new DifferentFile { DiffentValue = DifDescription.FileNotExistInClient, ParentName = server.FullName, FilName = o.Name, FullName = o.FullName, Type = FileType.File, ServiceFullPath = o.FullName, ClientFullPath = client.FullName });
+                            differentList.Add(new DifferentFile { DiffentValue = DifDescription.FileNotExistInClient, ParentName = server.FullName, FilName = o.Name, FullName = o.FullName, Type = FileType.File, ServiceFullPath = o.FullName, ClientFullPath = client.FullName,AbsoulteRootPath=o.AbsoulateRootPath });
                         else if (firstOrDefault.Size != o.Size)
-                            differentList.Add(new DifferentFile { DiffentValue = DifDescription.FileSizeInconsistency, ParentName = server.FullName, FilName = o.Name, FullName = o.FullName, Type = FileType.File, ServiceFullPath = o.FullName, ClientFullPath = firstOrDefault.FullName });
+                            differentList.Add(new DifferentFile { DiffentValue = DifDescription.FileSizeInconsistency, ParentName = server.FullName, FilName = o.Name, FullName = o.FullName, Type = FileType.File, ServiceFullPath = o.FullName, ClientFullPath = firstOrDefault.FullName,AbsoulteRootPath=o.AbsoulateRootPath });
                         else if (!string.IsNullOrEmpty(firstOrDefault.Version) && !string.IsNullOrEmpty(o.Version) && firstOrDefault.Version != o.Version)
-                            differentList.Add(new DifferentFile { DiffentValue = DifDescription.FileVersionInconsistency, ParentName = server.FullName, FilName = o.Name, FullName = o.FullName, Type = FileType.File, ServiceFullPath = o.FullName, ClientFullPath = firstOrDefault.FullName });
+                            differentList.Add(new DifferentFile { DiffentValue = DifDescription.FileVersionInconsistency, ParentName = server.FullName, FilName = o.Name, FullName = o.FullName, Type = FileType.File, ServiceFullPath = o.FullName, ClientFullPath = firstOrDefault.FullName,AbsoulteRootPath=o.AbsoulateRootPath });
                     }
                 });
                 //找出客户端存在而服务器不存在的文件
@@ -231,7 +235,7 @@ namespace MemexUpdateCommon
                     var serverNotExist = clientFiles.Where(o => !serverFiles.Select(c => c.Name).Contains(o.Name)).ToList();
                     if (serverNotExist.Any())
                         serverNotExist.ForEach(o => {
-                            differentList.Add(new DifferentFile { DiffentValue = DifDescription.FileNotExistInServer, ParentName = server.FullName, FilName = o.Name, FullName = o.FullName, Type = FileType.File, ServiceFullPath = server.FullName, ClientFullPath = o.FullName });
+                            differentList.Add(new DifferentFile { DiffentValue = DifDescription.FileNotExistInServer, ParentName = server.FullName, FilName = o.Name, FullName = o.FullName, Type = FileType.File, ServiceFullPath = server.FullName, ClientFullPath = o.FullName,AbsoulteRootPath=server.AbsoulateRootPath });
                         });
                 }
             }
@@ -241,7 +245,7 @@ namespace MemexUpdateCommon
                 var clientFiles = client.Files;
                 if (clientFiles.Any())
                     clientFiles.ForEach(o => {
-                        differentList.Add(new DifferentFile { DiffentValue = DifDescription.FileNotExistInServer, ParentName = client.FullName, FilName = o.Name, FullName = o.FullName, Type = FileType.File, ServiceFullPath = server.FullName, ClientFullPath = o.FullName });
+                        differentList.Add(new DifferentFile { DiffentValue = DifDescription.FileNotExistInServer, ParentName = client.FullName, FilName = o.Name, FullName = o.FullName, Type = FileType.File, ServiceFullPath = server.FullName, ClientFullPath = o.FullName,AbsoulteRootPath=server.AbsoulateRootPath });
                     });
             }
             #endregion
@@ -258,7 +262,7 @@ namespace MemexUpdateCommon
                     var firstOrDefault = clientDirs.FirstOrDefault(c => c.Name == o.Name);
                     if (firstOrDefault == null)
                     {
-                        differentList.Add(new DifferentFile { DiffentValue = DifDescription.DirNotExistInClient, ParentName = server.FullName, FilName = o.Name, FullName = o.FullName, Type = FileType.Dir, ServiceFullPath = o.FullName, ClientFullPath = client.FullName });
+                        differentList.Add(new DifferentFile { DiffentValue = DifDescription.DirNotExistInClient, ParentName = server.FullName, FilName = o.Name, FullName = o.FullName, Type = FileType.Dir, ServiceFullPath = o.FullName, ClientFullPath = client.FullName ,AbsoulteRootPath=o.AbsoulateRootPath});
                         if ((o.Files != null && o.Files.Any()) || (o.Dirs != null && o.Dirs.Any()))
                             DifferentDirAndSub(o, differentList, client.FullName);
                     }
@@ -299,13 +303,13 @@ namespace MemexUpdateCommon
             if (dir.Files != null && dir.Files.Any())
             {
                 dir.Files.ForEach(o => {
-                    differentFileList.Add(new DifferentFile { DiffentValue = DifDescription.FileNotExistInClient, FilName = o.Name, FullName = o.FullName, ParentName = o.ParentName, Type = FileType.File, ServiceFullPath = o.FullName, ClientFullPath = clientFullName + "\\" + dir.Name });
+                    differentFileList.Add(new DifferentFile { DiffentValue = DifDescription.FileNotExistInClient, FilName = o.Name, FullName = o.FullName, ParentName = o.ParentName, Type = FileType.File, ServiceFullPath = o.FullName, ClientFullPath = clientFullName + "\\" + dir.Name,AbsoulteRootPath=o.AbsoulateRootPath });
                 });
             }
             if (dir.Dirs != null && dir.Dirs.Any())
             {
                 dir.Dirs.ForEach(o => {
-                    differentFileList.Add(new DifferentFile { DiffentValue = DifDescription.DirNotExistInClient, FilName = o.Name, FullName = o.FullName, ParentName = o.ParentName, Type = FileType.Dir, ServiceFullPath = o.FullName, ClientFullPath = clientFullName + "\\" + dir.Name + "\\" + o.Name });
+                    differentFileList.Add(new DifferentFile { DiffentValue = DifDescription.DirNotExistInClient, FilName = o.Name, FullName = o.FullName, ParentName = o.ParentName, Type = FileType.Dir, ServiceFullPath = o.FullName, ClientFullPath = clientFullName + "\\" + dir.Name + "\\" + o.Name,AbsoulteRootPath=o.AbsoulateRootPath });
 
                     DifferentDirAndSub(o, differentFileList, clientFullName + "\\" + dir.Name + "\\" + o.Name);
                 });
@@ -328,7 +332,9 @@ namespace MemexUpdateCommon
             appEntity.MDir = new MDirs();
             appEntity.MDir.Name = path.Substring(path.LastIndexOf("\\") + 1);
             appEntity.MDir.FullName = path;
-            GetFilesTree(path, appEntity.MDir);
+            appEntity.RelativePath = "\\"+appEntity.MDir.Name;
+            appEntity.AbsoulateRootPath= path.Substring(0, path.LastIndexOf("\\") + 1);         
+            GetFilesTree(path, appEntity.MDir, appEntity.AbsoulateRootPath);
             return appEntity;
         }
         /// <summary>

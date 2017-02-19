@@ -25,6 +25,12 @@ namespace AutomaticUpdatesWCF
         public string ClientFullPath { get; set; }
         [DataMember]
         public string ServiceFullPath { get; set; }
+
+        /// <summary>
+        /// 服务器端绝对根目录
+        /// </summary>
+        [DataMember]
+        public string AbsoulteRootPath { get; set; }
     }
     [DataContract]
     public class ApplicationEntity
@@ -35,6 +41,18 @@ namespace AutomaticUpdatesWCF
         public string AppVersion { get; set; }
         [DataMember]
         public MDirs MDir { get; set; }
+        
+        /// <summary>
+        /// 相对路径
+        /// </summary>
+        [DataMember]
+        public string RelativePath { get; set; }
+
+        /// <summary>
+        /// 绝对根路径
+        /// </summary>
+        [DataMember]
+        public string AbsoulateRootPath { get; set; }
     }
     [DataContract]
     public class MFiles
@@ -49,6 +67,19 @@ namespace AutomaticUpdatesWCF
         /// </summary>
         [DataMember]
         public string FullName { get; set; }
+
+        /// <summary>
+        /// 相对路径
+        /// </summary>
+        [DataMember]
+        public string RelativePath { get; set; }
+
+        /// <summary>
+        /// 绝对根路径
+        /// </summary>
+        [DataMember]
+        public string AbsoulateRootPath { get; set; }
+
         /// <summary>
         /// 扩展名
         /// </summary>
@@ -85,6 +116,20 @@ namespace AutomaticUpdatesWCF
         public string FullName { get; set; }
         [DataMember]
         public string ParentName { get; set; }
+
+        /// <summary>
+        /// 相对路径
+        /// </summary>
+        [DataMember]
+        public string RelativePath { get; set; }
+
+
+        /// <summary>
+        /// 绝对根路径
+        /// </summary>
+        [DataMember]
+        public string AbsoulateRootPath { get; set; }
+
         [DataMember]
         public bool IsForceUpdate { get; set; }
         [DataMember]

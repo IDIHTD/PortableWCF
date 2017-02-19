@@ -23,6 +23,9 @@ namespace MemexUpdateCommon.ServiceReference1 {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AbsoulateRootPathField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string AppNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -31,6 +34,9 @@ namespace MemexUpdateCommon.ServiceReference1 {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private MemexUpdateCommon.ServiceReference1.MDirs MDirField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RelativePathField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -38,6 +44,19 @@ namespace MemexUpdateCommon.ServiceReference1 {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AbsoulateRootPath {
+            get {
+                return this.AbsoulateRootPathField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AbsoulateRootPathField, value) != true)) {
+                    this.AbsoulateRootPathField = value;
+                    this.RaisePropertyChanged("AbsoulateRootPath");
+                }
             }
         }
         
@@ -80,6 +99,19 @@ namespace MemexUpdateCommon.ServiceReference1 {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RelativePath {
+            get {
+                return this.RelativePathField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RelativePathField, value) != true)) {
+                    this.RelativePathField = value;
+                    this.RaisePropertyChanged("RelativePath");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -100,6 +132,9 @@ namespace MemexUpdateCommon.ServiceReference1 {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AbsoulateRootPathField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Collections.Generic.List<MemexUpdateCommon.ServiceReference1.MDirs> DirsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -117,6 +152,9 @@ namespace MemexUpdateCommon.ServiceReference1 {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ParentNameField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RelativePathField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -124,6 +162,19 @@ namespace MemexUpdateCommon.ServiceReference1 {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AbsoulateRootPath {
+            get {
+                return this.AbsoulateRootPathField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AbsoulateRootPathField, value) != true)) {
+                    this.AbsoulateRootPathField = value;
+                    this.RaisePropertyChanged("AbsoulateRootPath");
+                }
             }
         }
         
@@ -205,6 +256,19 @@ namespace MemexUpdateCommon.ServiceReference1 {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RelativePath {
+            get {
+                return this.RelativePathField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RelativePathField, value) != true)) {
+                    this.RelativePathField = value;
+                    this.RaisePropertyChanged("RelativePath");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -225,6 +289,9 @@ namespace MemexUpdateCommon.ServiceReference1 {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AbsoulateRootPathField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ExtendNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -240,6 +307,9 @@ namespace MemexUpdateCommon.ServiceReference1 {
         private string ParentNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RelativePathField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string SizeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -252,6 +322,19 @@ namespace MemexUpdateCommon.ServiceReference1 {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AbsoulateRootPath {
+            get {
+                return this.AbsoulateRootPathField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AbsoulateRootPathField, value) != true)) {
+                    this.AbsoulateRootPathField = value;
+                    this.RaisePropertyChanged("AbsoulateRootPath");
+                }
             }
         }
         
@@ -316,6 +399,19 @@ namespace MemexUpdateCommon.ServiceReference1 {
                 if ((object.ReferenceEquals(this.ParentNameField, value) != true)) {
                     this.ParentNameField = value;
                     this.RaisePropertyChanged("ParentName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RelativePath {
+            get {
+                return this.RelativePathField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RelativePathField, value) != true)) {
+                    this.RelativePathField = value;
+                    this.RaisePropertyChanged("RelativePath");
                 }
             }
         }
@@ -443,6 +539,9 @@ namespace MemexUpdateCommon.ServiceReference1 {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AbsoulteRootPathField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ClientFullPathField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -470,6 +569,19 @@ namespace MemexUpdateCommon.ServiceReference1 {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AbsoulteRootPath {
+            get {
+                return this.AbsoulteRootPathField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AbsoulteRootPathField, value) != true)) {
+                    this.AbsoulteRootPathField = value;
+                    this.RaisePropertyChanged("AbsoulteRootPath");
+                }
             }
         }
         

@@ -144,7 +144,6 @@ namespace AutomaticUpdatesWCF
         /// <returns></returns>
         public UpFileResult UpLoadFile(UpFile file)
         {
-            file.FileName = file.FileName.Substring(2);
             byte[] buffer = new byte[file.Size];
             FileStream fs = new FileStream(path + file.ProjectName + file.FileName, FileMode.Create, FileAccess.Write);
             int count = 0;
@@ -166,7 +165,6 @@ namespace AutomaticUpdatesWCF
         /// <returns></returns>
         public bool DirIsExistOrCreate(string dirName, string projectName)
         {
-            dirName = dirName.Substring(2);
             if (!Directory.Exists(path + projectName + "\\" + dirName))
             {
                 try
