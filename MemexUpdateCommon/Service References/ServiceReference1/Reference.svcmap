@@ -23,12 +23,12 @@
     <MetadataSource Address="http://localhost:60124/AutomaticUpdateImplement.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="AutomaticUpdateImplement1.wsdl" MetadataType="Wsdl" ID="d9649e5d-8327-4e90-a55e-8b01e39a8077" SourceId="1" SourceUrl="http://laptop-7esglg1f:60124/AutomaticUpdateImplement.svc?wsdl" />
-    <MetadataFile FileName="AutomaticUpdateImplement1.disco" MetadataType="Disco" ID="4be901f3-508e-47a6-a64a-8bf5804014b5" SourceId="1" SourceUrl="http://laptop-7esglg1f:60124/AutomaticUpdateImplement.svc?disco" />
-    <MetadataFile FileName="AutomaticUpdateImplement4.xsd" MetadataType="Schema" ID="0c2136af-a740-4b2d-8a19-39229be1bfad" SourceId="1" SourceUrl="http://laptop-7esglg1f:60124/AutomaticUpdateImplement.svc?xsd=xsd3" />
-    <MetadataFile FileName="AutomaticUpdateImplement41.xsd" MetadataType="Schema" ID="438bd375-1778-4c03-ae35-c68bd00eceeb" SourceId="1" SourceUrl="http://laptop-7esglg1f:60124/AutomaticUpdateImplement.svc?xsd=xsd2" />
-    <MetadataFile FileName="AutomaticUpdateImplement42.xsd" MetadataType="Schema" ID="8d9f3957-579a-41d2-86bb-391edb070a81" SourceId="1" SourceUrl="http://laptop-7esglg1f:60124/AutomaticUpdateImplement.svc?xsd=xsd1" />
-    <MetadataFile FileName="AutomaticUpdateImplement43.xsd" MetadataType="Schema" ID="c0c4273e-c58a-43fe-9f52-7e532f8d82d3" SourceId="1" SourceUrl="http://laptop-7esglg1f:60124/AutomaticUpdateImplement.svc?xsd=xsd0" />
+    <MetadataFile FileName="AutomaticUpdateImplement.xsd" MetadataType="Schema" ID="7c54d1fb-2d82-4e99-9dff-6e4af5f37a5a" SourceId="1" SourceUrl="http://mahui.wfdata.cn:60124/AutomaticUpdateImplement.svc?xsd=xsd1" />
+    <MetadataFile FileName="AutomaticUpdateImplement1.xsd" MetadataType="Schema" ID="59e6523e-c6c0-4fec-ac6b-a950bc90b66b" SourceId="1" SourceUrl="http://mahui.wfdata.cn:60124/AutomaticUpdateImplement.svc?xsd=xsd0" />
+    <MetadataFile FileName="AutomaticUpdateImplement2.xsd" MetadataType="Schema" ID="7d3bd540-279c-4324-b9dd-e21b28c22e07" SourceId="1" SourceUrl="http://mahui.wfdata.cn:60124/AutomaticUpdateImplement.svc?xsd=xsd3" />
+    <MetadataFile FileName="AutomaticUpdateImplement3.xsd" MetadataType="Schema" ID="8e8211d6-c4f8-4f54-8cb8-4574fef99ac0" SourceId="1" SourceUrl="http://mahui.wfdata.cn:60124/AutomaticUpdateImplement.svc?xsd=xsd2" />
+    <MetadataFile FileName="AutomaticUpdateImplement.wsdl" MetadataType="Wsdl" ID="978f7230-1320-432d-af74-60d651f9229c" SourceId="1" SourceUrl="http://mahui.wfdata.cn:60124/AutomaticUpdateImplement.svc?wsdl" />
+    <MetadataFile FileName="AutomaticUpdateImplement.disco" MetadataType="Disco" ID="ea6219a3-c224-4034-87bc-2d9f067976c6" SourceId="1" SourceUrl="http://mahui.wfdata.cn:60124/AutomaticUpdateImplement.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

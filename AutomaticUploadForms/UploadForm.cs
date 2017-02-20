@@ -124,18 +124,25 @@ namespace AutomaticUploadForms
             var issuccess = MemexUpateHelper.DownLoadFile(name, textBox1.Text, out msg, out size, out sm);
             if (issuccess.IsSuccess)
             {
+               
                 string path = textBox2.Text;
                 if (Directory.Exists(path))
                     Directory.CreateDirectory(path);
                 byte[] buffer = new byte[size];
-                FileStream fs = new FileStream(file.ClientFullPath, FileMode.Create, FileAccess.Write);
-                int count = 0;
-                while ((count = sm.Read(buffer, 0, buffer.Length)) > 0)
+                FileStream fs =new FileStream(file.ClientFullPath, FileMode.Create, FileAccess.Write);
+                try
                 {
-                    fs.Write(buffer, 0, count);
+                    int count = 0;
+                    while ((count = sm.Read(buffer, 0, buffer.Length)) > 0)
+                    {
+                        fs.Write(buffer, 0, count);
+                    }
+                    fs.Flush();
+                    fs.Close();
                 }
-                fs.Flush();
-                fs.Close();
+                finally {
+                    ((IDisposable)fs).Dispose();
+                }
             }
         }
 

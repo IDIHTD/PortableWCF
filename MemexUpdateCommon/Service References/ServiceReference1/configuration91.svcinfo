@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="NHJsk1vgL6I7n83a3wpBLECKtFU=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="KyArIniD230iqHXUQhIYmLxB+Yw=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IAutomaticUpdateServer">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IAutomaticUpdateServer" contract="ServiceReference1.IAutomaticUpdateServer" bindingType="basicHttpBinding" address="http://laptop-7esglg1f:60124/AutomaticUpdateImplement.svc/IAutomaticUpdateServer" bindingConfiguration="BasicHttpBinding_IAutomaticUpdateServer">
+    <endpoint name="BasicHttpBinding_IAutomaticUpdateServer" contract="ServiceReference1.IAutomaticUpdateServer" bindingType="basicHttpBinding" address="http://mahui.wfdata.cn:60124/AutomaticUpdateImplement.svc/IAutomaticUpdateServer" bindingConfiguration="BasicHttpBinding_IAutomaticUpdateServer">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://laptop-7esglg1f:60124/AutomaticUpdateImplement.svc/IAutomaticUpdateServer</serializedValue>
+          <serializedValue>http://mahui.wfdata.cn:60124/AutomaticUpdateImplement.svc/IAutomaticUpdateServer</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
