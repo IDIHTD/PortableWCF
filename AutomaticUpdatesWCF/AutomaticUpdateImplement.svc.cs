@@ -157,6 +157,7 @@ namespace AutomaticUpdatesWCF
             fs.Close();
             return new UpFileResult(true, "");
         }
+    
 
         /// <summary>
         /// 如果路径不存在则创建，存在返回true
