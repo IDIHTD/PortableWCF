@@ -36,18 +36,20 @@ namespace AutomaticUploadForms
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             var uploadFiles = MemexUpateHelper.GetFiles(txtBoxLoadPath.Text);
-            if (uploadFiles != null && uploadFiles.MDir != null)
+            if (uploadFiles != null && uploadFiles.MDir != null&&uploadFiles.FileCount>0)
             {
                 MemexUpateHelper.DeleteAppInfo(textBox3.Text);
                 MemexUpateHelper.DeleteFile(textBox3.Text);
                     StartUploadFile(uploadFiles.MDir);
+                var appParams = new ApplicationInfo { AppName = textBox3.Text, AppVersion = txtBoxProjectVersion.Text, AppPath = txtBoxLoadPath.Text };
+                MemexUpateHelper.SetApplicationInfo(appParams);
+                GetFileList();
+                //更新项目文件信息到XML中
+                MemexUpateHelper.UpdateAppInfo(textBox3.Text);
+                MessageBox.Show("上传完成！");
             }
-            var appParams = new ApplicationInfo { AppName = textBox3.Text, AppVersion= txtBoxProjectVersion.Text, AppPath=txtBoxLoadPath.Text};
-            MemexUpateHelper.SetApplicationInfo(appParams);
-            GetFileList();
-            //更新项目文件信息到XML中
-            MemexUpateHelper.UpdateAppInfo(textBox3.Text);
-            MessageBox.Show("上传完成！");
+            MessageBox.Show("选择的文件夹没有文件！");
+           
         }
 
         #region upload
