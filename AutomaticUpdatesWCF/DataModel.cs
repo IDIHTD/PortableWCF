@@ -53,6 +53,13 @@ namespace AutomaticUpdatesWCF
         /// </summary>
         [DataMember]
         public string AbsoulateRootPath { get; set; }
+
+        /// <summary>
+        /// 文件数量
+        /// </summary>
+        [DataMember]
+        public int FileCount { get; set; }
+
     }
     [DataContract]
     public class MFiles

@@ -75,11 +75,13 @@ namespace AutomaticUpdatesWCF
             appEntity.MDir.FullName = path;
             appEntity.RelativePath = "\\" + appEntity.MDir.Name;
             appEntity.AbsoulateRootPath = path.Substring(0, path.LastIndexOf("\\") + 1);
-            GetFilesTree(path, appEntity.MDir, appEntity.AbsoulateRootPath);
+            int fileCount = 0;
+            GetFilesTree(path, appEntity.MDir, appEntity.AbsoulateRootPath,ref fileCount);
+            appEntity.FileCount = fileCount;
             return appEntity;
         }
 
-        private static void GetFilesTree(string targetDir, MDirs currentObject, string absolutePath)
+        private static void GetFilesTree(string targetDir, MDirs currentObject, string absolutePath,ref int fileCount)
         {
             if (currentObject == null)
                 currentObject = new MDirs();
@@ -108,6 +110,7 @@ namespace AutomaticUpdatesWCF
                     AbsoulateRootPath = absolutePath,
                     RelativePath = fileName.Substring(absolutePath.Length - 1)
                 });
+                fileCount++;
             }
             foreach (string directory in Directory.GetDirectories(targetDir))
             {
@@ -120,7 +123,7 @@ namespace AutomaticUpdatesWCF
                     RelativePath = directory.Substring(absolutePath.Length - 1)
                 };
                 currentObject.Dirs.Add(currentEntity);
-                GetFilesTree(directory, currentEntity, absolutePath);
+                GetFilesTree(directory, currentEntity, absolutePath,ref fileCount);
             }
         }
 

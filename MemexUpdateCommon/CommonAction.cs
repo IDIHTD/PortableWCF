@@ -151,7 +151,7 @@ namespace MemexUpdateCommon
         /// </summary>
         /// <param name="targetDir"></param>
         /// <param name="currentObject"></param>
-        private static void GetFilesTree(string targetDir, MDirs currentObject,string absolutePath)
+        private static void GetFilesTree(string targetDir, MDirs currentObject,string absolutePath,ref int fileCount)
         {
             if (currentObject == null)
                 currentObject = new MDirs();
@@ -180,6 +180,7 @@ namespace MemexUpdateCommon
                     AbsoulateRootPath = absolutePath,
                     RelativePath = fileName.Substring(absolutePath.Length-1)
                 });
+                fileCount++;
             }
             foreach (string directory in Directory.GetDirectories(targetDir))
             {
@@ -192,7 +193,7 @@ namespace MemexUpdateCommon
                     RelativePath=directory.Substring(absolutePath.Length-1)
                 };
                 currentObject.Dirs.Add(currentEntity);
-                GetFilesTree(directory, currentEntity, absolutePath);
+                GetFilesTree(directory, currentEntity, absolutePath,ref fileCount);
             }
         }
 
@@ -333,8 +334,10 @@ namespace MemexUpdateCommon
             appEntity.MDir.Name = path.Substring(path.LastIndexOf("\\") + 1);
             appEntity.MDir.FullName = path;
             appEntity.RelativePath = "\\"+appEntity.MDir.Name;
-            appEntity.AbsoulateRootPath= path.Substring(0, path.LastIndexOf("\\") + 1);         
-            GetFilesTree(path, appEntity.MDir, appEntity.AbsoulateRootPath);
+            appEntity.AbsoulateRootPath= path.Substring(0, path.LastIndexOf("\\") + 1);
+            int fileCount = 0;     
+            GetFilesTree(path, appEntity.MDir, appEntity.AbsoulateRootPath,ref fileCount);
+            appEntity.FileCount = fileCount;
             return appEntity;
         }
         /// <summary>

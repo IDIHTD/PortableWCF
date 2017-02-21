@@ -32,6 +32,9 @@ namespace MemexUpdateCommon.ServiceReference1 {
         private string AppVersionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int FileCountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private MemexUpdateCommon.ServiceReference1.MDirs MDirField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -82,6 +85,19 @@ namespace MemexUpdateCommon.ServiceReference1 {
                 if ((object.ReferenceEquals(this.AppVersionField, value) != true)) {
                     this.AppVersionField = value;
                     this.RaisePropertyChanged("AppVersion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int FileCount {
+            get {
+                return this.FileCountField;
+            }
+            set {
+                if ((this.FileCountField.Equals(value) != true)) {
+                    this.FileCountField = value;
+                    this.RaisePropertyChanged("FileCount");
                 }
             }
         }

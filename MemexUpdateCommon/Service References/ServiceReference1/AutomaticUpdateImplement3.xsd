@@ -6,6 +6,7 @@
       <xs:element minOccurs="0" name="AbsoulateRootPath" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="AppName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="AppVersion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FileCount" type="xs:int" />
       <xs:element minOccurs="0" name="MDir" nillable="true" type="tns:MDirs" />
       <xs:element minOccurs="0" name="RelativePath" nillable="true" type="xs:string" />
     </xs:sequence>
