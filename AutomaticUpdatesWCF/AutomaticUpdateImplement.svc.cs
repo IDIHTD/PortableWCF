@@ -93,6 +93,11 @@ namespace AutomaticUpdatesWCF
         /// <returns></returns>
         public bool SetApplicationInfo(ApplicationInfo appInfo)
         {
+            var rootName = string.Empty;
+            if (appInfo != null && !string.IsNullOrEmpty(appInfo.AppPath))
+                rootName = appInfo.AppPath.Substring(appInfo.AppPath.LastIndexOf("\\"));
+            var currentPath = FileProcessingHelper.GetUpLoadFilePath() + appInfo.AppName + rootName;
+            appInfo.AppPath = currentPath;
             var currentAppEntity = FileProcessingHelper.GetFiles(appInfo.AppPath);
             if (currentAppEntity != null && currentAppEntity.MDir != null)
             {

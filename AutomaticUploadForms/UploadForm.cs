@@ -48,6 +48,7 @@ namespace AutomaticUploadForms
                 MemexUpateHelper.UpdateAppInfo(textBox3.Text);
                 MessageBox.Show("上传完成！");
             }
+            else
             MessageBox.Show("选择的文件夹没有文件！");
            
         }
